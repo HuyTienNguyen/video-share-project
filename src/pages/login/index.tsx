@@ -1,11 +1,10 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Card, Checkbox, Form, Input, Typography } from "antd";
-import Link from "next/link";
-import { useRouter } from "next/router";
 import { FC } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { signIn } from "../../store/auth/slice";
-import { RootState } from "../../store";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { signIn } from "../../stores/auth/slice";
+import { useNavigate } from "react-router-dom";
 const { Title } = Typography;
 
 interface Values {
@@ -15,13 +14,13 @@ interface Values {
 }
 
 const LoginForm: FC = () => {
-  const router = useRouter();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const onFinish = (values: Values) => {
     const { username, password } = values;
     if (username && password) {
       const data = dispatch(signIn({ username, password }));
-      if (data) router.push("/");
+      if (data) navigate("/");
     }
   };
 
@@ -82,9 +81,9 @@ const LoginForm: FC = () => {
               Log in
             </Button>
             <div style={{ paddingTop: "5px" }}>
-              Don't have an account{" "}
-              <Link href="/register" style={{ color: "#1677ff" }}>
-                sign up
+              Don't have an account
+              <Link to="/register" style={{ color: "#1677ff" }}>
+                 sign up
               </Link>
             </div>
           </Form.Item>

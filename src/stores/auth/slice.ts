@@ -37,7 +37,6 @@ const authSlice = createSlice({
       state: IAuthState,
       action: PayloadAction<{ isAuthenticated: boolean }>
     ) => {
-      console.log("slice", action.payload.isAuthenticated);
       state.isAuthenticated = action.payload.isAuthenticated;
     },
   },

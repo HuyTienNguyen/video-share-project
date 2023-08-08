@@ -1,6 +1,4 @@
 import { Cookies } from "react-cookie";
-import axiosClient from "../api/axiosClient";
-import { IUserLoginResponse } from "../stores/response.type";
 
 const cookies = new Cookies();
 
@@ -16,14 +14,6 @@ const serviceUser = {
       return;
     }
     cookies.remove("JWT_TOKEN");
-  },
-
-  login: async (username: string, password: string) => {
-    const response = await axiosClient.post<IUserLoginResponse>("/login", {
-      username,
-      password,
-    });
-    return response;
   },
 };
 

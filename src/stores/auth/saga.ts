@@ -15,11 +15,16 @@ import { ISignInAction } from "./type";
 function* signInWorker(action: IAction<ISignInAction>) {
   try {
     const { username, password } = action.payload;
-    const loginResponse: IUserLoginResponse = yield serviceUser.login(
-      username,
-      password
+    // const loginResponse: IUserLoginResponse = yield serviceUser.login(
+    //   username,
+    //   password
+    // );
+    const loginResponse: IUserLoginResponse = yield call(
+      authApi.login,
+      action.payload
     );
     if (loginResponse) {
+      console.log("data", loginResponse);
       const { accessToken } = loginResponse;
       serviceUser.storeAccessToken(accessToken);
 
@@ -31,7 +36,6 @@ function* signInWorker(action: IAction<ISignInAction>) {
 }
 
 function* signOutWorker() {
-  console.log("saga");
   serviceUser.storeAccessToken(null);
   yield put({ type: signOutSuccess.toString() });
 }
