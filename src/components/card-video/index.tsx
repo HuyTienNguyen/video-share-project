@@ -5,11 +5,11 @@ import {
   LikeOutlined,
 } from "@ant-design/icons";
 import { Card } from "antd";
-import style from "./style.module.scss";
 import clsx from "clsx";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../stores";
+import style from "./style.module.scss";
 
 const { Meta } = Card;
 export interface CardVideoProps {
@@ -68,7 +68,7 @@ export default function CardVideo({
               ) : (
                 <DislikeOutlined
                   className={clsx({
-                    // [style.hover_button_interact]: isInteract !== true 
+                    // [style.hover_button_interact]: isInteract !== true
                   })}
                   onClick={() => handleReactVideo(isInteract)}
                 />

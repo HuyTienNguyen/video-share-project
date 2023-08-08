@@ -13,7 +13,7 @@ interface Values {
   remember: boolean;
 }
 
-const LoginForm: FC = () => {
+const LoginPage: FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const onFinish = (values: Values) => {
@@ -83,7 +83,7 @@ const LoginForm: FC = () => {
             <div style={{ paddingTop: "5px" }}>
               Don't have an account
               <Link to="/register" style={{ color: "#1677ff" }}>
-                 sign up
+                sign up
               </Link>
             </div>
           </Form.Item>
@@ -93,4 +93,4 @@ const LoginForm: FC = () => {
   );
 };
 
-export default LoginForm;
+export default LoginPage;

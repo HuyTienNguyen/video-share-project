@@ -1,16 +1,28 @@
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import { Routes, Route, Link } from "react-router-dom";
-import Home from "./pages/home";
-import LoginForm from "./pages/login";
-import RegisterForm from "./pages/register";
+import { PrivateRoute } from "./layout/private-route";
+import SharedVideoPage from "./pages/shared-video";
+import NotFoundPage from "./pages/not-found";
+import HomePage from "./pages/home";
+import LoginPage from "./pages/login";
+import RegisterPage from "./pages/register";
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/register" element={<RegisterForm />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/*" element={<NotFoundPage />} />
+        <Route
+          path="/shared-video"
+          element={
+            <PrivateRoute>
+              <SharedVideoPage />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </div>
   );

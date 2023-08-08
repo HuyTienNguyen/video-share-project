@@ -14,8 +14,4 @@ export const authApi = {
   logout() {
     return axiosClient.post("/logout");
   },
-
-  getProfile() {
-    return axiosClient.get("/profile");
-  },
 };

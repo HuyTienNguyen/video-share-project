@@ -9,7 +9,7 @@ import {
 
 const { Title } = Typography;
 
-export default function RegisterForm() {
+export default function RegisterPage() {
   return (
     <div
       style={{
