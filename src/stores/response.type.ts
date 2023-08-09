@@ -1,4 +1,4 @@
 export interface IUserLoginResponse {
-  accessToken: string;
-  expiredAt: any;
+  access_token: string;
+  expired_at: any;
 }

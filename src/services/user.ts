@@ -4,8 +4,8 @@ const cookies = new Cookies();
 
 const serviceUser = {
   getAccessToken: () => {
-    const userInfo = cookies.get("JWT_TOKEN");
-    return userInfo ? userInfo : null;
+    const token = cookies.get("JWT_TOKEN");
+    return token ? token : null;
   },
 
   storeAccessToken: (token: string | null) => {

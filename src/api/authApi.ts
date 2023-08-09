@@ -4,11 +4,12 @@ import axiosClient from "./axiosClient";
 
 export const authApi = {
   login(payload: LoginPayload): Promise<IUserLoginResponse> {
-    return axiosClient.post("/login", payload);
+    console.log("data", payload);
+    return axiosClient.post("/auth/login", payload);
   },
 
   register(payload: RegisterPayload) {
-    return axiosClient.post("/register", payload);
+    return axiosClient.post("/auth/register", payload);
   },
 
   logout() {

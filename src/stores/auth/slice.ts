@@ -20,11 +20,13 @@ const authSlice = createSlice({
       state: IAuthState,
       action: PayloadAction<{ jwtToken: string }>
     ) => {
+      console.log("success");
       state.status = EActionStatus.Succeeded;
       state.isAuthenticated = true;
       state.jwtAuth = action.payload.jwtToken;
     },
     signInFail: (state: IAuthState) => {
+      console.log("fail")
       state.status = EActionStatus.Failed;
     },
     signOut: (state: IAuthState) => {

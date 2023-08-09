@@ -3,7 +3,6 @@ import { EActionStatus } from "../type";
 
 export interface IVideo {
   id: number;
-  name: string;
   title: string;
   url: string;
   likeCount: number;
@@ -19,7 +18,13 @@ export interface IGetAllDataQuery {
 export interface IVideosState {
   status: EActionStatus;
   statusInteracVideo: EActionStatus;
+  statusShareVideo: EActionStatus;
   videosList: IVideo[];
+  keywordSearch: string;
   filter: ListParams;
   pagination: PaginationParams;
+}
+
+export interface ShareVideoResponse {
+  success: boolean;
 }

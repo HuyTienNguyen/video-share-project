@@ -4,7 +4,7 @@ import axiosClient from "./axiosClient";
 
 const videoApi = {
   getAll(params: ListParams): Promise<ListResponse<IVideo>> {
-    const url = "/students";
+    const url = "/videos";
     return axiosClient.get(url, { params });
   },
   getVideoSharedAll(params: ListParams): Promise<ListResponse<IVideo>> {
@@ -12,9 +12,13 @@ const videoApi = {
     return axiosClient.get(url, { params });
   },
   updateInteractVideo(videoId: number): Promise<any> {
-    const url = `/like/${videoId}`;
+    const url = `/videos/like/${videoId}`;
     return axiosClient.post(url);
   },
+  shareVideoId(videoId: number): Promise<any> {
+    const url = `/videos/share/${videoId}`;
+    return axiosClient.post(url);
+  }
 };
 
 export default videoApi;

@@ -5,8 +5,11 @@ export interface PaginationParams {
 }
 
 export interface ListResponse<T> {
-  data: T[];
-  pagination: PaginationParams;
+  content: {
+    data: T[];
+    pagination: PaginationParams;
+  };
+  success: boolean;
 }
 
 export interface ListParams {

@@ -30,7 +30,7 @@ export default function ListVideoShared() {
               <Col className={style.colStyle} xs={24} sm={12} md={8} lg={6}>
                 <CardVideoShared
                   id={e.id}
-                  title={e.name}
+                  title={e.title}
                   timeShared={e.createdAt}
                 />
               </Col>

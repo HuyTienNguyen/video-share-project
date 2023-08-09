@@ -14,21 +14,17 @@ import { ISignInAction } from "./type";
 
 function* signInWorker(action: IAction<ISignInAction>) {
   try {
-    const { username, password } = action.payload;
-    // const loginResponse: IUserLoginResponse = yield serviceUser.login(
-    //   username,
-    //   password
-    // );
     const loginResponse: IUserLoginResponse = yield call(
       authApi.login,
       action.payload
     );
+    console.log("check", loginResponse);
     if (loginResponse) {
       console.log("data", loginResponse);
-      const { accessToken } = loginResponse;
-      serviceUser.storeAccessToken(accessToken);
+      const { access_token } = loginResponse;
+      serviceUser.storeAccessToken(access_token);
 
-      yield put({ type: signInSuccess.toString(), payload: accessToken });
+      yield put({ type: signInSuccess.toString(), payload: access_token });
     }
   } catch (error) {
     yield put({ type: signInFail.toString() });

@@ -6,15 +6,17 @@ import { ListParams, ListResponse } from "../common";
 const initialState: IVideosState = {
   status: EActionStatus.Idle,
   statusInteracVideo: EActionStatus.Idle,
+  statusShareVideo: EActionStatus.Idle,
   videosList: [],
+  keywordSearch: "",
   filter: {
     _page: 1,
-    _limit: 12,
+    _limit: 10,
   },
   pagination: {
     _page: 1,
-    _limit: 15,
-    _totalRows: 15,
+    _limit: 10,
+    _totalRows: 10,
   },
 };
 
@@ -33,15 +35,15 @@ const videoSlice = createSlice({
       action: PayloadAction<ListResponse<IVideo>>
     ) => {
       state.status = EActionStatus.Succeeded;
-      state.videosList = action.payload.data;
-      state.pagination = action.payload.pagination;
+      state.videosList = action.payload.content.data;
+      state.pagination = action.payload.content.pagination;
     },
     getAllVideosFailed: (state: IVideosState) => {
       state.status = EActionStatus.Failed;
     },
     interactVideo: (
       state: IVideosState,
-      _: PayloadAction<{ videoId: number}>
+      _: PayloadAction<{ videoId: number }>
     ) => {
       state.statusInteracVideo = EActionStatus.Pending;
     },
@@ -52,6 +54,27 @@ const videoSlice = createSlice({
 
     interactVideoFailed: (state: IVideosState) => {
       state.statusInteracVideo = EActionStatus.Failed;
+    },
+
+    shareVideo: (
+      state: IVideosState,
+      _: PayloadAction<{ videoId: number }>
+    ) => {
+      state.statusShareVideo = EActionStatus.Pending;
+    },
+    shareVideoSuccess: (state: IVideosState) => {
+      state.statusShareVideo = EActionStatus.Succeeded;
+    },
+
+    shareVideoFailed: (state: IVideosState) => {
+      state.statusShareVideo = EActionStatus.Failed;
+    },
+
+    setKeywordSearch: (
+      state: IVideosState,
+      action: PayloadAction<{ newKeyword: string }>
+    ) => {
+      state.keywordSearch = action.payload.newKeyword;
     },
 
     setFilter(state, action: PayloadAction<ListParams>) {
@@ -67,6 +90,10 @@ export const {
   interactVideo,
   interactVideoSuccess,
   interactVideoFailed,
+  shareVideo,
+  shareVideoSuccess,
+  shareVideoFailed,
+  setKeywordSearch,
   setFilter,
 } = videoSlice.actions;
 

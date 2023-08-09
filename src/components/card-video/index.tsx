@@ -18,6 +18,7 @@ export interface CardVideoProps {
   likeCount: number;
   reactVideo: boolean | null;
   onChangeReact: (idVideo: number) => void;
+  onChangeShared: (idVideo: number) => void;
 }
 
 export default function CardVideo({
@@ -26,6 +27,7 @@ export default function CardVideo({
   likeCount,
   reactVideo,
   onChangeReact,
+  onChangeShared,
 }: CardVideoProps) {
   const { isAuthenticated } = useSelector((state: RootState) => state.auth);
   const [isInteract, setIsInteract] = useState<boolean | null>(reactVideo);
@@ -63,6 +65,7 @@ export default function CardVideo({
                     { [style.color_button_like]: isInteract },
                     { [style.hover_button_interact]: isInteract !== true }
                   )}
+                  style={{fontSize: '16px'}}
                   onClick={() => handleReactVideo(isInteract)}
                 />
               ) : (
@@ -70,10 +73,11 @@ export default function CardVideo({
                   className={clsx({
                     // [style.hover_button_interact]: isInteract !== true
                   })}
+                  style={{fontSize: '16px'}}
                   onClick={() => handleReactVideo(isInteract)}
                 />
               ),
-              <EditOutlined key="edit" />,
+              <EditOutlined key="edit" style={{fontSize: '16px'}} onClick={() => onChangeShared(id)}/>,
             ]
           : []
       }
@@ -82,7 +86,7 @@ export default function CardVideo({
         title={title}
         description={
           <div style={{ fontWeight: "bold" }}>
-            <HeartOutlined style={{ color: "red" }} /> {reactCount}
+            <HeartOutlined style={{ color: "red", fontSize: '16px' }} /> {reactCount}
           </div>
         }
       />

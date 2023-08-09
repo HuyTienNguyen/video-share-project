@@ -1,8 +1,7 @@
-import * as React from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import ListVideo from "../../components/list-video";
 import MainLayout from "../../layout/main-layout";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { RootState } from "../../stores";
 
 export default function HomePage() {
@@ -10,9 +9,11 @@ export default function HomePage() {
   return (
     <MainLayout>
       <>
-        <h1>Hello</h1>
+        <h1>Home</h1>
         {isAuthenticated && (
-          <Link to={"/shared-video"}>Go to shared video page</Link>
+          <div style={{ marginBottom: "20px" }}>
+            <Link to={"/shared-video"}>Go to shared video page</Link>
+          </div>
         )}
         <ListVideo />
       </>

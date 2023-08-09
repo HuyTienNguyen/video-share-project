@@ -1,10 +1,12 @@
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Card, Checkbox, Form, Input, Typography } from "antd";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signIn } from "../../stores/auth/slice";
 import { useNavigate } from "react-router-dom";
+import { RootState } from "../../stores";
+import { EActionStatus } from "../../stores/type";
 const { Title } = Typography;
 
 interface Values {
@@ -14,15 +16,17 @@ interface Values {
 }
 
 const LoginPage: FC = () => {
+  const { status } = useSelector((state: RootState) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const onFinish = (values: Values) => {
     const { username, password } = values;
-    if (username && password) {
-      const data = dispatch(signIn({ username, password }));
-      if (data) navigate("/");
-    }
+    if (username && password) dispatch(signIn({ username, password }));
   };
+
+  useEffect(() => {
+    if (status === EActionStatus.Succeeded) navigate("/");
+  }, [status]);
 
   return (
     <div
@@ -41,8 +45,8 @@ const LoginPage: FC = () => {
           name="normal_login"
           className="login-form"
           initialValues={{
-            username: "1111",
-            password: "1111111",
+            username: "huy1",
+            password: "huy1",
             remember: true,
           }}
           onFinish={onFinish}
