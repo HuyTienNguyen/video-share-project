@@ -1,15 +1,60 @@
 import * as React from "react";
-import { Button, Card, DatePicker, Form, Input, Typography } from "antd";
+import {
+  Button,
+  Card,
+  DatePicker,
+  Form,
+  Input,
+  Typography,
+  notification,
+} from "antd";
 import {
   LockOutlined,
   MailOutlined,
   PhoneOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+import { useDispatch, useSelector } from "react-redux";
+import { signUp } from "../../stores/auth/slice";
+import { RootState } from "../../stores";
+import { useEffect } from "react";
+import { EActionStatus } from "../../stores/type";
+import { useNavigate } from "react-router-dom";
 
 const { Title } = Typography;
 
+interface Values {
+  username: string;
+  email: string;
+  password: string;
+  phone: string | null;
+  dob: string | null;
+}
+
 export default function RegisterPage() {
+  const { statusSignUp } = useSelector((state: RootState) => state.auth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const onFinish = (values: Values) => {
+    dispatch(signUp({ ...values }));
+  };
+
+  useEffect(() => {
+    if (statusSignUp === EActionStatus.Succeeded) {
+      notification.success({
+        message: "Sign up successfully!",
+      });
+
+      const timeoutId = setTimeout(() => {
+        navigate("/login");
+      }, 1000);
+
+      return () => {
+        clearTimeout(timeoutId);
+      };
+    }
+  }, [statusSignUp]);
+
   return (
     <div
       style={{
@@ -23,7 +68,19 @@ export default function RegisterPage() {
         <div style={{ display: "flex", justifyContent: "center" }}>
           <Title level={3}>Register Account</Title>
         </div>
-        <Form name="register_form" className="register-form">
+        <Form
+          name="register_form"
+          className="register-form"
+          initialValues={{
+            username: "",
+            email: "",
+            password: "",
+            confirmPassword: "",
+            phone: null,
+            dob: null,
+          }}
+          onFinish={onFinish}
+        >
           <Form.Item
             name="username"
             rules={[

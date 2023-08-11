@@ -7,6 +7,6 @@ export interface RegisterPayload {
   username: string;
   email: string;
   password: string;
-  phone: string;
-  dob: string;
+  phone: string | null;
+  dob: string | null;
 }
