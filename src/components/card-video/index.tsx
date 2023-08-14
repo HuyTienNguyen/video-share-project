@@ -10,6 +10,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../stores";
 import style from "./style.module.scss";
+import ModalShareVideo from "../modal-share-video";
 
 const { Meta } = Card;
 export interface CardVideoProps {
@@ -17,8 +18,9 @@ export interface CardVideoProps {
   title: string;
   likeCount: number;
   reactVideo: boolean | null;
-  onChangeReact: (idVideo: number) => void;
-  onChangeShared: (idVideo: number) => void;
+  urlVideo: string;
+  onChangeReact: (videoId: number) => void;
+  onChangeModalShareVideo: (videoId: number) => void;
 }
 
 export default function CardVideo({
@@ -26,8 +28,9 @@ export default function CardVideo({
   title,
   likeCount,
   reactVideo,
+  urlVideo,
   onChangeReact,
-  onChangeShared,
+  onChangeModalShareVideo,
 }: CardVideoProps) {
   const { isAuthenticated } = useSelector((state: RootState) => state.auth);
   const [isInteract, setIsInteract] = useState<boolean | null>(reactVideo);
@@ -48,48 +51,61 @@ export default function CardVideo({
     onChangeReact(id);
   };
 
+  const hanldeModalShareVideo = () => {
+    onChangeModalShareVideo(id);
+  };
+
   return (
-    <Card
-      cover={
-        <img
-          alt="example"
-          src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-        />
-      }
-      actions={
-        isAuthenticated
-          ? [
-              isInteract || isInteract === null ? (
-                <LikeOutlined
-                  className={clsx(
-                    { [style.color_button_like]: isInteract },
-                    { [style.hover_button_interact]: isInteract !== true }
-                  )}
-                  style={{fontSize: '16px'}}
-                  onClick={() => handleReactVideo(isInteract)}
-                />
-              ) : (
-                <DislikeOutlined
-                  className={clsx({
-                    // [style.hover_button_interact]: isInteract !== true
-                  })}
-                  style={{fontSize: '16px'}}
-                  onClick={() => handleReactVideo(isInteract)}
-                />
-              ),
-              <EditOutlined key="edit" style={{fontSize: '16px'}} onClick={() => onChangeShared(id)}/>,
-            ]
-          : []
-      }
-    >
-      <Meta
-        title={title}
-        description={
-          <div style={{ fontWeight: "bold" }}>
-            <HeartOutlined style={{ color: "red", fontSize: '16px' }} /> {reactCount}
-          </div>
+    <>
+      <Card
+        cover={
+          <iframe
+            width="100%"
+            height="315"
+            src={urlVideo}
+            allowFullScreen
+          ></iframe>
         }
-      />
-    </Card>
+        actions={
+          isAuthenticated
+            ? [
+                isInteract || isInteract === null ? (
+                  <LikeOutlined
+                    className={clsx(
+                      { [style.color_button_like]: isInteract },
+                      { [style.hover_button_interact]: isInteract !== true }
+                    )}
+                    style={{ fontSize: "16px" }}
+                    onClick={() => handleReactVideo(isInteract)}
+                  />
+                ) : (
+                  <DislikeOutlined
+                    className={clsx({
+                      // [style.hover_button_interact]: isInteract !== true
+                    })}
+                    style={{ fontSize: "16px" }}
+                    onClick={() => handleReactVideo(isInteract)}
+                  />
+                ),
+                <EditOutlined
+                  key="edit"
+                  style={{ fontSize: "16px" }}
+                  onClick={() => hanldeModalShareVideo()}
+                />,
+              ]
+            : []
+        }
+      >
+        <Meta
+          title={title}
+          description={
+            <div style={{ fontWeight: "bold" }}>
+              <HeartOutlined style={{ color: "red", fontSize: "16px" }} />{" "}
+              {reactCount}
+            </div>
+          }
+        />
+      </Card>
+    </>
   );
 }

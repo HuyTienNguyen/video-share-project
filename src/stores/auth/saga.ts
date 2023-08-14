@@ -22,10 +22,12 @@ function* signInWorker(action: IAction<LoginPayload>) {
       action.payload
     );
     if (response) {
-      const { access_token } = response;
+      const { access_token, userId } = response;
       serviceUser.storeAccessToken(access_token);
-
-      yield put({ type: signInSuccess.toString(), payload: access_token });
+      yield put({
+        type: signInSuccess.toString(),
+        payload: { jwtToken: access_token, currentUserId: userId },
+      });
     }
   } catch (error) {
     yield put({ type: signInFail.toString() });

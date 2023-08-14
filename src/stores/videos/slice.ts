@@ -35,8 +35,8 @@ const videoSlice = createSlice({
       action: PayloadAction<ListResponse<IVideo>>
     ) => {
       state.status = EActionStatus.Succeeded;
-      state.videosList = action.payload.content.data;
-      state.pagination = action.payload.content.pagination;
+      state.videosList = action.payload.data;
+      state.pagination = action.payload.pagination;
     },
     getAllVideosFailed: (state: IVideosState) => {
       state.status = EActionStatus.Failed;
@@ -46,6 +46,7 @@ const videoSlice = createSlice({
       _: PayloadAction<{ videoId: number }>
     ) => {
       state.statusInteracVideo = EActionStatus.Pending;
+      state.statusShareVideo = EActionStatus.Idle;
     },
 
     interactVideoSuccess: (state: IVideosState) => {
@@ -61,6 +62,7 @@ const videoSlice = createSlice({
       _: PayloadAction<{ videoId: number }>
     ) => {
       state.statusShareVideo = EActionStatus.Pending;
+      state.statusInteracVideo = EActionStatus.Idle;
     },
     shareVideoSuccess: (state: IVideosState) => {
       state.statusShareVideo = EActionStatus.Succeeded;
@@ -79,6 +81,8 @@ const videoSlice = createSlice({
 
     setFilter(state, action: PayloadAction<ListParams>) {
       state.filter = action.payload;
+      state.statusInteracVideo = EActionStatus.Idle;
+      state.statusShareVideo = EActionStatus.Idle;
     },
   },
 });

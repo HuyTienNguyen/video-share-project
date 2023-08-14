@@ -8,7 +8,7 @@ const videoApi = {
     return axiosClient.get(url, { params });
   },
   getVideoSharedAll(params: ListParams): Promise<ListResponse<IVideo>> {
-    const url = "/students";
+    const url = "/videos/shared";
     return axiosClient.get(url, { params });
   },
   updateInteractVideo(videoId: number): Promise<any> {

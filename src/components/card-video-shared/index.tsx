@@ -8,21 +8,25 @@ const { Meta } = Card;
 export interface CardVideoProps {
   id: number;
   title: string;
+  urlVideo: string;
   timeShared: string;
 }
 
 export default function CardVideoShared({
   id,
   title,
+  urlVideo,
   timeShared,
 }: CardVideoProps) {
   return (
     <Card
       cover={
-        <img
-          alt="example"
-          src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-        />
+        <iframe
+          width="100%"
+          height="315"
+          src={urlVideo}
+          allowFullScreen
+        ></iframe>
       }
     >
       <Meta
@@ -33,11 +37,12 @@ export default function CardVideoShared({
               fontWeight: "bold",
               display: "flex",
               alignItems: "center",
+              justifyContent: "center",
               columnGap: "10px",
             }}
           >
             <FieldTimeOutlined style={{ fontSize: "20px" }} />
-            {format(new Date(timeShared), "dd MMM yyyy")}
+            {format(new Date(timeShared), "dd MMM yyyy HH:MM:SS")}
           </div>
         }
       />

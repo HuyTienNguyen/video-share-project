@@ -12,7 +12,6 @@ const { Title } = Typography;
 interface Values {
   username: string;
   password: string;
-  remember: boolean;
 }
 
 const LoginPage: FC = () => {
@@ -47,7 +46,6 @@ const LoginPage: FC = () => {
           initialValues={{
             username: "huy1",
             password: "huy1",
-            remember: true,
           }}
           onFinish={onFinish}
         >
@@ -71,11 +69,6 @@ const LoginPage: FC = () => {
             />
           </Form.Item>
           <Form.Item>
-            <Form.Item name="remember" valuePropName="checked" noStyle>
-              <Checkbox>Remember me</Checkbox>
-            </Form.Item>
-          </Form.Item>
-          <Form.Item>
             <Button
               type="primary"
               htmlType="submit"
@@ -85,7 +78,7 @@ const LoginPage: FC = () => {
               Log in
             </Button>
             <div style={{ paddingTop: "5px" }}>
-              Don't have an account
+              Don't have an account{" "}
               <Link to="/register" style={{ color: "#1677ff" }}>
                 sign up
               </Link>

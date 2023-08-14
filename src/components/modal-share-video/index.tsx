@@ -1,25 +1,36 @@
 import { Button, Modal } from "antd";
 import * as React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../stores";
+import { closeModalShareVideo } from "../../stores/modal/slice";
+import { shareVideo } from "../../stores/videos/slice";
 
 export default function ModalShareVideo() {
-  const [open, setOpen] = React.useState(false);
+  const dispatch = useDispatch();
+  const { isOpenModalShareVideo, videoIdShare } = useSelector(
+    (state: RootState) => state.modal
+  );
+
+  const handleCloseModal = () => {
+    dispatch(closeModalShareVideo());
+  };
+
+  const handleShareVideo = () => {
+    dispatch(shareVideo({ videoId: videoIdShare }));
+    handleCloseModal();
+  };
 
   return (
     <>
-      <Button type="primary" onClick={() => setOpen(true)}>
-        Share video
-      </Button>
       <Modal
         title="Share video"
         centered
-        open={open}
-        onOk={() => setOpen(false)}
-        onCancel={() => setOpen(false)}
+        open={isOpenModalShareVideo}
+        onOk={() => handleShareVideo()}
+        onCancel={() => handleCloseModal()}
         width={500}
       >
-        <p>Title: aa</p>
-        <p>Url: http</p>
-        <p>Do you want to share videos?</p>
+        <p>Want to share this video with everyone?</p>
       </Modal>
     </>
   );

@@ -5,4 +5,5 @@ export interface IAuthState {
   statusSignUp: EActionStatus;
   jwtAuth: string | null;
   isAuthenticated: boolean;
+  currentUserId: number;
 }

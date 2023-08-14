@@ -10,11 +10,6 @@ export interface IVideo {
   createdAt: string;
 }
 
-export interface IGetAllDataQuery {
-  page: number;
-  limit: number;
-}
-
 export interface IVideosState {
   status: EActionStatus;
   statusInteracVideo: EActionStatus;

@@ -1,6 +1,5 @@
 import { Col, Row } from "antd";
 import ButtonLogin from "../../components/button-login";
-import InputSearch from "../../components/input-search";
 import avatar from "../../images/logo.png";
 import style from "./style.module.scss";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,6 +12,7 @@ import {
   setKeywordSearch,
 } from "../../stores/videos/slice";
 import { Link } from "react-router-dom";
+import InputSearch from "../../components/elements/input-search";
 
 export interface HeaderProps {}
 const Header = ({}: HeaderProps) => {

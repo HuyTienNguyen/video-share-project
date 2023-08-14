@@ -1,6 +1,7 @@
 export interface IUserLoginResponse {
   access_token: string;
   expired_at: any;
+  userId: number;
 }
 
 export interface IUserRegisterResponse {
