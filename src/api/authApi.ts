@@ -1,7 +1,7 @@
 import { LoginPayload, RegisterPayload } from "../stores/auth/type";
 import {
   IUserLoginResponse,
-  IUserRegisterResponse,
+  IUserRegisterResponse, 
 } from "../stores/response.type";
 import axiosClient from "./axiosClient";
 
