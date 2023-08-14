@@ -1,18 +1,17 @@
 import { Col, Row } from "antd";
-import ButtonLogin from "../../components/button-login";
-import avatar from "../../images/logo.png";
-import style from "./style.module.scss";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../stores";
-import ButtonLogout from "../../components/button-logout";
 import { useEffect, useState } from "react";
-import useDebounce from "../../hooks/use-debounce";
-import {
-  getAllVideosRequest,
-  setKeywordSearch,
-} from "../../stores/videos/slice";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import ButtonLogin from "../../components/auth-button/button-login";
+import ButtonLogout from "../../components/auth-button/button-logout";
 import InputSearch from "../../components/elements/input-search";
+import useDebounce from "../../hooks/use-debounce";
+import avatar from "../../images/logo.png";
+import { RootState } from "../../stores";
+import {
+  setKeywordSearch
+} from "../../stores/videos/slice";
+import style from "./style.module.scss";
 
 export interface HeaderProps {}
 const Header = ({}: HeaderProps) => {

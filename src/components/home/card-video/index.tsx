@@ -8,9 +8,8 @@ import { Card } from "antd";
 import clsx from "clsx";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "../../stores";
+import { RootState } from "../../../stores";
 import style from "./style.module.scss";
-import ModalShareVideo from "../modal-share-video";
 
 const { Meta } = Card;
 export interface CardVideoProps {
@@ -81,7 +80,7 @@ export default function CardVideo({
                 ) : (
                   <DislikeOutlined
                     className={clsx({
-                      // [style.hover_button_interact]: isInteract !== true
+                      [style.hover_button_interact]: isInteract === false
                     })}
                     style={{ fontSize: "16px" }}
                     onClick={() => handleReactVideo(isInteract)}

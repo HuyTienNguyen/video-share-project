@@ -1,4 +1,4 @@
-import { LoginPayload, RegisterPayload } from "../models/auth";
+import { LoginPayload, RegisterPayload } from "../stores/auth/type";
 import {
   IUserLoginResponse,
   IUserRegisterResponse,

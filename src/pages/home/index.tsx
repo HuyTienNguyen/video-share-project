@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import ListVideo from "../../components/list-video";
+import ListVideo from "../../components/home/list-video";
 import MainLayout from "../../layout/main-layout";
 import { RootState } from "../../stores";
 

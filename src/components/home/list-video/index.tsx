@@ -1,28 +1,25 @@
 import { Col, Row } from "antd";
 import { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNotification } from "../../hooks/use-notification";
-import { RootState } from "../../stores";
-import { openModalShareVideo } from "../../stores/modal/slice";
-import { EActionStatus } from "../../stores/type";
+import { useNotification } from "../../../hooks/use-notification";
+import { RootState } from "../../../stores";
+import { openModalShareVideo } from "../../../stores/modal/slice";
+import { EActionStatus } from "../../../stores/type";
 import {
   getAllVideosRequest,
   interactVideo,
   setFilter,
-} from "../../stores/videos/slice";
+} from "../../../stores/videos/slice";
+import Pagination from "../../elements/pagination";
 import CardVideo from "../card-video";
 import style from "./style.module.scss";
-import Pagination from "../elements/pagination";
 
 export default function ListVideo() {
   const { openNotification, contextHolder } = useNotification();
   const dispatch = useDispatch();
-  const {
-    statusInteracVideo,
-    videosList,
-    filter,
-    pagination,
-  } = useSelector((state: RootState) => state.video);
+  const { statusInteracVideo, videosList, filter, pagination } = useSelector(
+    (state: RootState) => state.video
+  );
   useEffect(() => {
     dispatch(getAllVideosRequest(filter));
     // eslint-disable-next-line

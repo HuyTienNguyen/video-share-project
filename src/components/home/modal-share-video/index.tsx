@@ -1,9 +1,8 @@
-import { Button, Modal } from "antd";
-import * as React from "react";
+import { Modal } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../stores";
-import { closeModalShareVideo } from "../../stores/modal/slice";
-import { shareVideo } from "../../stores/videos/slice";
+import { RootState } from "../../../stores";
+import { closeModalShareVideo } from "../../../stores/modal/slice";
+import { shareVideo } from "../../../stores/videos/slice";
 
 export default function ModalShareVideo() {
   const dispatch = useDispatch();

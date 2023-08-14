@@ -1,19 +1,15 @@
-import { FieldTimeOutlined, HeartOutlined } from "@ant-design/icons";
+import { FieldTimeOutlined } from "@ant-design/icons";
 import { Card } from "antd";
-import { useSelector } from "react-redux";
-import { RootState } from "../../stores";
-import { format } from "date-fns";
+import { formatDate } from "../../../utils/date";
 
 const { Meta } = Card;
 export interface CardVideoProps {
-  id: number;
   title: string;
   urlVideo: string;
   timeShared: string;
 }
 
 export default function CardVideoShared({
-  id,
   title,
   urlVideo,
   timeShared,
@@ -42,7 +38,7 @@ export default function CardVideoShared({
             }}
           >
             <FieldTimeOutlined style={{ fontSize: "20px" }} />
-            {format(new Date(timeShared), "dd MMM yyyy HH:MM:SS")}
+            {formatDate(timeShared)}
           </div>
         }
       />

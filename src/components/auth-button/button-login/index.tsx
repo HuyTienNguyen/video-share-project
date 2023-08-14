@@ -1,6 +1,5 @@
-import RButton from "../elements/button";
-
 import { useNavigate } from "react-router-dom";
+import RButton from "../../elements/button";
 export default function ButtonLogin() {
   const navigate = useNavigate();
 
@@ -9,7 +8,9 @@ export default function ButtonLogin() {
   };
   return (
     <>
-      <RButton type="primary" onClick={handleLogin}>Login</RButton>
+      <RButton type="primary" onClick={handleLogin}>
+        Login
+      </RButton>
     </>
   );
 }

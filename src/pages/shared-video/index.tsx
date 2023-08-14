@@ -1,4 +1,4 @@
-import ListVideoShared from "../../components/list-video-shared";
+import ListVideoShared from "../../components/shared-video/list-video-shared";
 import MainLayout from "../../layout/main-layout";
 
 export default function SharedVideoPage() {

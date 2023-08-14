@@ -8,9 +8,9 @@ const serviceUser = {
     return token ? token : null;
   },
 
-  storeAccessToken: (token: string | null) => {
-    if (token) {
-      cookies.set("JWT_TOKEN", token);
+  storeAccessToken: (token: string | null, expiredAt?: number) => {
+    if (token && expiredAt) {
+      cookies.set("JWT_TOKEN", token, { expires: new Date(expiredAt) });
       return;
     }
     cookies.remove("JWT_TOKEN");

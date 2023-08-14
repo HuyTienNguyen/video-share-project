@@ -1,6 +1,6 @@
 import { call, put, takeLeading } from "redux-saga/effects";
 import { authApi } from "../../api/authApi";
-import serviceUser from "../../services/user";
+import serviceUser from "../../utils/user";
 import { IUserLoginResponse, IUserRegisterResponse } from "../response.type";
 import { IAction } from "../type";
 import {
@@ -13,7 +13,7 @@ import {
   signUpFail,
   signUpSuccess,
 } from "./slice";
-import { LoginPayload, RegisterPayload } from "../../models/auth";
+import { LoginPayload, RegisterPayload } from "./type";
 
 function* signInWorker(action: IAction<LoginPayload>) {
   try {
@@ -22,8 +22,8 @@ function* signInWorker(action: IAction<LoginPayload>) {
       action.payload
     );
     if (response) {
-      const { access_token, userId } = response;
-      serviceUser.storeAccessToken(access_token);
+      const { access_token, expired_at, userId } = response;
+      serviceUser.storeAccessToken(access_token, expired_at);
       yield put({
         type: signInSuccess.toString(),
         payload: { jwtToken: access_token, currentUserId: userId },

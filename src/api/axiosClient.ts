@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
-import serviceUser from "../services/user";
+import serviceUser from "../utils/user";
 import { notification } from "antd";
 
 const axiosClient = axios.create({

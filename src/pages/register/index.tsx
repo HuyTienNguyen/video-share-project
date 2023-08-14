@@ -1,4 +1,9 @@
-import * as React from "react";
+import {
+  LockOutlined,
+  MailOutlined,
+  PhoneOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 import {
   Button,
   Card,
@@ -8,18 +13,12 @@ import {
   Typography,
   notification,
 } from "antd";
-import {
-  LockOutlined,
-  MailOutlined,
-  PhoneOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
-import { useDispatch, useSelector } from "react-redux";
-import { signUp } from "../../stores/auth/slice";
-import { RootState } from "../../stores";
 import { useEffect } from "react";
-import { EActionStatus } from "../../stores/type";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { RootState } from "../../stores";
+import { signUp } from "../../stores/auth/slice";
+import { EActionStatus } from "../../stores/type";
 
 const { Title } = Typography;
 

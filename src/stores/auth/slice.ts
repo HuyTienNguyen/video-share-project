@@ -1,8 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { EActionStatus } from "../type";
-import { IAuthState } from "./type";
-import serviceUser from "../../services/user";
-import { LoginPayload, RegisterPayload } from "../../models/auth";
+import { IAuthState, LoginPayload, RegisterPayload } from "./type";
+import serviceUser from "../../utils/user";
 
 const initialState: IAuthState = {
   status: EActionStatus.Idle,
