@@ -16,7 +16,7 @@ function App() {
   const { openNotification, contextHolder } = useNotification();
   const { currentUserId } = useSelector((state: RootState) => state.auth);
   useEffect(() => {
-    const socket = io("http://localhost:5000"); // Replace with your server URL
+    const socket = io(process.env.REACT_APP_API_URL ?? ""); // Replace with your server URL
     socket.on("connect", () => {
       console.log("socket connected");
     });
